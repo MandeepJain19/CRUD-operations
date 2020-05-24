@@ -1,0 +1,98 @@
+
+<%- include('header.ejs') %>
+	
+				
+		<div class="journal">
+			<span>The Journal</span>
+		</div>
+		
+		
+		<div id="nav0">
+		<hr id="navhr">
+		<div class="ui center aligned page stackable four column grid" id="nav1">
+				  <div class="column"><a href="#"><div class="column">Event</div></a></div>
+				  <div class="column"><a href="#"><div class="column">Food</div></a></div>
+				  <div class="column"><a href="#"><div class="column">Entertainment</div></a></div>
+				  <div class="column"><a href="#"><div class="column">Campus</div></a></div>
+			</div>
+		<hr id="navhr">
+		</div>
+		<br>
+		<% if(!blogs){ %>
+			<%console.log(404);%>
+		<%}else{%>
+			<% var inc = 0;%>
+		<%}%>
+		
+		<% blogs.forEach(function(blog){ %>
+		
+		<% if(inc == 0){ %>
+		<% inc++ %>
+		<div class="container"> 
+		<div class="row" id="">
+			<div class="col-md" id="imgBox">
+				<img class="ui segment medium rounded image" id="blogImg" src="./uploads/<%= blog.img %>" />
+			</div>
+			<div class="col-md" id="blogTitle" >
+				<h2 class="titleFont"> <%= blog.title %></h2>
+				<div class="ui stackable two column grid" id="blogDesc">
+					<div class="column" id="textStyle">
+					
+					<% var array=blog.desc.split(" "); %>
+					<p>
+					<% for(var i=0; i<60; i++){ %>
+					<% if(i==0){ %>
+					<%= array[i] %>
+					<%} else{%>
+					<%= array[i] %>
+						<% }} %>
+				
+					</div>
+					<div class="column" id="textStyle">
+					<% for(var i=60; i<120; i++){ %>
+					<%= array[i] %>
+						<% } %>
+						.....</p>
+					</div>
+				</div>
+				<br>
+				<a href="/xapjam/<%= blog._id %>" class="ui blue button" id="readButton">Read More</a>
+			</div>
+		</div>
+		<br>
+		<br>
+		<hr id="hrAfterBlog">
+		<div class="ui stackable three column  grid">
+		<%}else{%>
+			<% inc++ %>
+		<div class="column">
+			<div id="imgBox2">
+			<img id="blogImg2" src="./uploads/<%= blog.img %>" class="ui medium rounded image segment"> 
+			</div>
+			<br>
+			<div >
+				<h4 class="titleFont"><%= blog.title %></h4>
+			</div>
+			<br>
+			<div id="blog2">
+				<p><%- blog.desc.substring(0,150) %>.....</p>
+				<a href="/xapjam/<%= blog._id %>" class="ui blue button" id="readButton">Read More</a>
+			</div>
+		</div>
+		
+		<% } %>
+		
+		<% }); %>
+	   </div>
+		<br>
+		
+		<%- include("footer.ejs") %>
+		
+	
+			
+			
+			
+
+
+
+

@@ -1,0 +1,59 @@
+<%- include("header.ejs") %>
+
+<div class="journal">
+		<span><%= blog.title %></span>
+</div>
+
+<hr id="navhr">
+<br>
+<div class="ui main text container " >
+	<div > 
+		<img class="ui fluid bordered rounded centered image" src="../uploads/<%= blog.img %>"  />
+		<br>
+		<hr>
+	</div>
+	
+	<div id="showDesc">
+		<p><%= blog.desc %></p>
+	</div>
+	
+	<div>
+	Author:
+	</div>
+<br>
+<hr>
+<br>
+
+<div class=" well text-right " id="comment">
+	<div>
+		<button class="ui  teal button comment" >Add Comment</button>
+	</div>
+	<hr>
+	<div  class="startHidden"> 
+		<form class="ui form" action="/xapjam/<%= blog._id %>/comment" method="POST">
+			<div class="field">
+				<input type="text" name="name" placeholder="Enter Name ">
+				<input type="text" name="comment" placeholder="Comment Here..">
+			</div>
+			<button class="ui green button" type="submit">Post</button>
+		</form>
+	</div>
+	<hr>
+</div>
+
+	
+	<div>
+		<% blog.comment.forEach(function(comment){ %>
+		<%console.log(comment);%>
+	<strong> <%= comment.name %> :-  </strong>
+	<span> <%= comment.comment %> </span>
+	<hr>
+	<%});%>
+	</div>
+	
+</div>
+
+
+
+
+<%- include("footer.ejs") %>
